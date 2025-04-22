@@ -50,7 +50,7 @@ class QueryRegenerateEvent extends ServerEvent{
 	private $whitelist;
 	private $port;
 	private $ip;
-
+	private $tps;
 	private $extraData = [];
 
 	public function __construct(Server $server, $timeout = 5){
@@ -74,7 +74,15 @@ class QueryRegenerateEvent extends ServerEvent{
 		$this->whitelist = $server->hasWhitelist() ? "on" : "off";
 		$this->port = $server->getPort();
 		$this->ip = $server->getIp();
+		$this->tps = $server->getTicksPerSecond();
+	}
 
+	public function getTPS(){
+		return $this->tps;
+	}
+
+	public function setTPS($tps){
+		$this->tps = $tps;
 	}
 
 	/**
@@ -197,7 +205,8 @@ class QueryRegenerateEvent extends ServerEvent{
 			"maxplayers" => $this->maxPlayers,
 			"whitelist" => $this->whitelist,
 			"hostip" => $this->ip,
-			"hostport" => $this->port
+			"hostport" => $this->port,
+			"tps" => $this->tps
 		];
 
 		foreach($KVdata as $key => $value){
