@@ -230,6 +230,10 @@ abstract class Generator
 
 	public abstract function init(ChunkManager $level, Random $random);
 
+	public function getWaterHeight() : int{
+		return 0;
+	}
+
 	public abstract function generateChunk($chunkX, $chunkZ);
 
 	public abstract function populateChunk($chunkX, $chunkZ);

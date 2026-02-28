@@ -84,6 +84,10 @@ class Normal extends Generator
 		return "normal";
 	}
 
+	public function getWaterHeight() : int{
+		return $this->waterHeight;
+	}
+
 	public function getSettings()
 	{
 		return [];
@@ -242,7 +246,7 @@ class Normal extends Generator
 
 					if ($noiseValue > 0) {
 						$chunk->setBlockId($x, $y, $z, Block::STONE);
-					} elseif ($y <= $this->waterHeight) {
+					} elseif ($y <= $this->getWaterHeight()) {
 						$chunk->setBlockId($x, $y, $z, Block::STILL_WATER);
 					}
 				}
